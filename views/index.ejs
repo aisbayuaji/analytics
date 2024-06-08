@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        #selectData {
+            height: 35px;
+            vertical-align: sub;
+            margin-right: 5px;
+        }
+        .card-custom {
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: ">";
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        hr {
+            margin: 1px;
+        }
+       
+
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            </ol>
+        </div>
+
+        <div class="card card-custom">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="kategori">Pilih Kategori:</label>
+                    <select name="jabatan" id="jabatan" class="form-control">
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="tgl1">Periode Awal Laporan :</label>
+                    <div class="d-flex">
+                        <select name="bulan1" id="bulan1" class="form-control mr-2">
+                            <option value="01" selected>Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <label for="tgl2" class="mr-2 align-self-center"> / </label>
+                        <select name="tahun1" id="tahun1" class="form-control mr-2">
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024" selected>2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="tgl1">Periode Akhir Laporan :</label>
+                    <div class="d-flex">
+                        <select name="bulan2" id="bulan2" class="form-control mr-2">
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06" selected>Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                        <label for="tgl2" class="mr-2 align-self-center"> / </label>
+                        <select name="tahun2" id="tahun2" class="form-control mr-2">
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024" selected>2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="row">
+                        <div class="col">
+                            <label style="display: grid;">Posisi : <div id="akunposisi"></div></label>
+                        </div>
+                        <div class="col" style="margin: 4px;">        
+                            <select id="akun" class="form-control mr-2">
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">RKA : <label id="akunrka"></label></div>
+                        <div class="col"><label id="akunpencapaian"></label></div>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="row">
+                        <div class="col">
+                            <label style="display: grid;">Posisi : <div id="akunposisi1"></div></label>
+                        </div>
+                        <div class="col" style="margin: 4px;">        
+                            <select id="akun1" class="form-control mr-2">
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">RKA : <label id="akunrka1"></label></div>
+                        <div class="col"><label id="akunpencapaian1"></label></div>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="row">
+                        <div class="col">
+                            <label style="display: grid;">Posisi : <div id="akunposisi2"></div></label>
+                        </div>
+                        <div class="col" style="margin: 4px;">        
+                            <select id="akun2" class="form-control mr-2">
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">RKA : <label id="akunrka2"></label></div>
+                        <div class="col"><label id="akunpencapaian2"></label></div>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <canvas id="lineChart2"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="row">
+                        <div class="col">
+                            <label style="display: grid;">Posisi : <div id="akunposisi3"></div></label>
+                        </div>
+                        <div class="col" style="margin: 4px;">        
+                            <select id="akun3" class="form-control mr-2">
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">RKA : <label id="akunrka3"></label></div>
+                        <div class="col"><label id="akunpencapaian3"></label></div>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <canvas id="doughnutChart" style="height: 250px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="row">
+                        <div class="col">
+                            <label style="display: grid;">Posisi : <div id="akunposisi4"></div></label>
+                        </div>
+                        <div class="col" style="margin: 4px;">        
+                            <select id="akun4" class="form-control mr-2">
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">RKA : <label id="akunrka4"></label></div>
+                        <div class="col"><label id="akunpencapaian4"></label></div>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <canvas id="pieChart" style="height: 250px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom">
+                    <div class="row">
+                        <div class="col">
+                            <label style="display: grid;">Posisi : <div id="akunposisi5"></div></label>
+                        </div>
+                        <div class="col" style="margin: 4px;">        
+                            <select id="akun5" class="form-control mr-2">
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">RKA : <label id="akunrka5"></label></div>
+                        <div class="col"><label id="akunpencapaian5"></label></div>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <canvas id="radarChart" style="height: 250px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-2" style="margin-bottom: 30px;">
+            <div class="col-2">
+                <div class="card card-custom">
+                    <h6 class="card-title"><b>Comparison</b></h6>
+                    <label>Pilih Akun : </label>
+                    <div class="">
+                        <select id="comp1" class="form-control mr-2" style="margin-bottom: 10px;">
+                           
+                        </select>
+                        <select id="comp2" class="form-control mr-2" style="margin-bottom: 10px;">
+                        </select>
+                        <select id="comp3" class="form-control mr-2" style="margin-bottom: 10px;">
+                        </select>
+                        <select id="comp4" class="form-control mr-2" style="margin-bottom: 10px;">
+                        </select>
+
+                    </div>
+                    <hr>
+                   
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="card card-custom">
+                    <h6 class="card-title">Grafik Comparison</h6>
+        
+                    <hr>
+                    <div class="card-body">
+                        <canvas id="lineChart3" style="height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Dataset 1',
+                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
+                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+                borderWidth: 1,
+                data: [0, 10, 5, 2, 20, 30, 45],
+            }]
+        };
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+       
+        fetch('/data-akunall')
+            .then(response => response.json())
+            .then(data => {
+                const selectElement = document.getElementById('jabatan');
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.nama_kategori;
+                    option.text = item.nama_kategori;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+             
+            const fetchAndPopulateSelect = (url, selectId) => {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const selectElement = document.getElementById(selectId);
+            let hasSimpanan = false;
+
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.keterangan;
+                option.text = item.keterangan;
+                selectElement.appendChild(option);
+
+                if (item.keterangan === "Simpanan") {
+                    hasSimpanan = true;
+                }
+            });
+
+            if (hasSimpanan) {
+                selectElement.value = "Simpanan";
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
+};
+
+const selectIds = ['akun', 'akun1', 'akun2', 'akun3', 'akun4', 'akun5', 'comp1', 'comp2', 'comp3', 'comp4'];
+
+selectIds.forEach(id => fetchAndPopulateSelect('/akun-report', id));
+ 
+
+//load1
+
+const elements = [
+    { posisi: 'akunposisi', rka: 'akunrka', pencapaian: 'akunpencapaian' },
+    { posisi: 'akunposisi1', rka: 'akunrka1', pencapaian: 'akunpencapaian1' },
+    { posisi: 'akunposisi2', rka: 'akunrka2', pencapaian: 'akunpencapaian2' },
+    { posisi: 'akunposisi3', rka: 'akunrka3', pencapaian: 'akunpencapaian3' },
+    { posisi: 'akunposisi4', rka: 'akunrka4', pencapaian: 'akunpencapaian4' },
+    { posisi: 'akunposisi5', rka: 'akunrka5', pencapaian: 'akunpencapaian5' }
+];
+
+const akunload = "Simpanan";
+const jabatan = "Pinca";
+const bulan1 = document.getElementById('bulan1').value;
+const tahun1 = document.getElementById('tahun1').value;
+const bulan2 = document.getElementById('bulan2').value;
+const tahun2 = document.getElementById('tahun2').value;
+
+console.log(akunload);
+
+fetch(`/proses-report/${akunload}/${jabatan}/${bulan1}/${tahun1}/${bulan2}/${tahun2}`)
+    .then(response => response.json())
+    .then(data => {
+        let akun = [];
+        let bulan = [];
+
+        data.forEach((item, index) => {
+            const element = elements[index];
+            const posisiElement = document.getElementById(element.posisi);
+            const rkaElement = document.getElementById(element.rka);
+            const pencapaianElement = document.getElementById(element.pencapaian);
+
+            if (posisiElement && rkaElement && pencapaianElement) {
+                posisiElement.innerText = item.posisi;
+                rkaElement.innerText = item.rka;
+                pencapaianElement.innerText = item.pencapaian;
+                posisiElement.style.fontWeight = 'bold';
+            }
+
+            const date = new Date(item.tanggal_report);
+            const monthName = date.toLocaleString('id-ID', { month: 'long' });
+
+            akun.push({ posisi: item.posisi, bulan: monthName });
+            bulan.push(monthName);
+        });
+
+        const bulanUrutan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        const sortedData = akun.sort((a, b) => bulanUrutan.indexOf(a.bulan) - bulanUrutan.indexOf(b.bulan));
+
+        const sortedAkun = sortedData.map(item => item.posisi);
+        const sortedBulan = sortedData.map(item => item.bulan);
+
+        barGrafik(sortedAkun, sortedBulan);
+        linegrafik(sortedAkun, sortedBulan);
+        doughnutChart(sortedAkun, sortedBulan);
+        pie(sortedAkun, sortedBulan);
+        linegrafik2(sortedAkun, sortedBulan);
+        radar(sortedAkun, sortedBulan);
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+
+ //comparison
+ document.querySelectorAll('#comp1, #comp2, #comp3, #comp4').forEach(select => {
+    select.addEventListener('change', () => {
+        const data1 = document.getElementById('comp1').value;
+        const data2 = document.getElementById('comp2').value;
+        const data3 = document.getElementById('comp3').value;
+        const data4 = document.getElementById('comp4').value;
+
+        fetch(`/proses-report2/${data1}/${data2}/${data3}/${data4}/${jabatan}/${bulan1}/${tahun1}/${bulan2}/${tahun2}`)
+            .then(response => response.json())
+            .then(data => {
+                let akun1 = [];
+                let akun2 = [];
+                let akun3 = [];
+                let akun4 = [];
+                let bulan = [];
+
+                data.forEach(item => {
+                    const date = new Date(item.tanggal_report);
+                    const monthName = date.toLocaleString('id-ID', { month: 'long' });
+
+                    if (item.keterangan == data1) {
+                        akun1.push(item.posisi);
+                    }
+                    if (item.keterangan == data2) {
+                        akun2.push(item.posisi);
+                    }
+                    if (item.keterangan == data3) {
+                        akun3.push(item.posisi);
+                    }
+                    if (item.keterangan == data4) {
+                        akun4.push(item.posisi);
+                    }
+                    bulan.push(monthName);
+                });
+
+                console.log([akun1, akun2, akun3, akun4]);
+
+                const bulanUrutan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+                const sortedBulan = bulan.sort((a, b) => bulanUrutan.indexOf(a) - bulanUrutan.indexOf(b));
+
+                grafikcomparison2(akun1, akun2, akun3, akun4, sortedBulan, data1,data2,data3,data4);
+            })
+            .catch(error => console.error('Error fetching data', error));
+    });
+});
+
+
+ fetch(`/proses-report/${akunload}/${jabatan}/${bulan1}/${tahun1}/${bulan2}/${tahun2}`)
+    .then(response => response.json())
+    .then(data => {
+        let akun = [];
+        let bulan = [];
+
+        data.forEach(item => {
+            const date = new Date(item.tanggal_report);
+            const monthName = date.toLocaleString('id-ID', { month: 'long' });
+
+            akun.push({ posisi: item.posisi, bulan: monthName });
+            bulan.push(monthName);
+        });
+
+        const bulanUrutan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        const sortedData = akun.sort((a, b) => bulanUrutan.indexOf(a.bulan) - bulanUrutan.indexOf(b.bulan));
+
+        const sortedAkun1 = sortedData.map(item => item.posisi);
+        const sortedAkun2 = sortedData.map(item => item.posisi);
+        const sortedAkun3 = sortedData.map(item => item.posisi);
+        const sortedAkun4 = sortedData.map(item => item.posisi);
+        const sortedBulan = sortedData.map(item => item.bulan);
+
+        grafikcomparison(sortedAkun1, sortedAkun2, sortedAkun3, sortedAkun4, sortedBulan);
+    })
+    .catch(error => console.error('Error fetching data', error));
+
+    let linegrafikInstance4;
+
+function grafikcomparison2(akun1, akun2, akun3, akun4, bulan, data1,data2,data3,data4) {
+    const ctx = document.getElementById('lineChart3').getContext('2d');
+
+    if (linegrafikInstance4) {
+        linegrafikInstance4.destroy();
+    }
+
+    linegrafikInstance4 = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: bulan,
+            datasets: [
+                {
+                    label: data1,
+                    data: akun1,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
+                },
+                {
+                    label: data2,
+                    data: akun2,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255, 99, 132, 1)'
+                },
+                {
+                    label: data3,
+                    data: akun3,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+                },
+                {
+                    label: data4,
+                    data: akun4,
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: 'rgba(255, 206, 86, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255, 206, 86, 1)'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Bulan',
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Values',
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#666',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 12
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw;
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+}
+
+
+
+let linegrafikInstance3;
+
+function grafikcomparison(akun1, akun2, akun3, akun4, bulan) {
+    const ctx = document.getElementById('lineChart3').getContext('2d');
+
+    if (linegrafikInstance3) {
+        linegrafikInstance3.destroy();
+    }
+
+    linegrafikInstance3 = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: bulan,
+            datasets: [
+                {
+                    label: 'Simpanan',
+                    data: akun1,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(75, 192, 192, 1)'
+                },
+                {
+                    label: 'Simpanan',
+                    data: akun2,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255, 99, 132, 1)'
+                },
+                {
+                    label: 'Simpanan',
+                    data: akun3,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+                },
+                {
+                    label: 'Simpanan',
+                    data: akun4,
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    pointBackgroundColor: 'rgba(255, 206, 86, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255, 206, 86, 1)'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Bulan',
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Values',
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#666',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 12
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw;
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+}
+
+
+//akun
+    const selectAkun = document.getElementById('akun');
+
+    selectAkun.addEventListener('change', function() {
+
+    const cek = this.value;
+    const posisi = document.getElementById('akunposisi');
+    const rka = document.getElementById('akunrka');
+    const pencapaian = document.getElementById('akunpencapaian');
+    const jabatan = document.getElementById('jabatan').value;
+    const bulan1 = document.getElementById('bulan1').value;
+    const tahun1 = document.getElementById('tahun1').value;
+    const bulan2 = document.getElementById('bulan2').value;
+    const tahun2 = document.getElementById('tahun2').value;
+
+    fetch(`/proses-report/${cek}/${jabatan}/${bulan1}/${tahun1}/${bulan2}/${tahun2}`)
+        .then(response => response.json())
+        .then(data => {
+            let akun = [];
+            let bulan = [];
+            data.forEach(item => {
+                posisi.innerText = item.posisi;
+                rka.innerText = item.rka;
+                pencapaian.innerText = item.pencapaian;
+                posisi.style.fontWeight = 'bold';
+
+                const date = new Date(item.tanggal_report);
+                const monthName = date.toLocaleString('id-ID', { month: 'long' });
+
+                akun.push({ posisi: item.posisi, bulan: monthName });
+                bulan.push(monthName);
+            });
+
+            const bulanUrutan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const sortedData = akun.sort((a, b) => bulanUrutan.indexOf(a.bulan) - bulanUrutan.indexOf(b.bulan));
+
+            const sortedAkun = sortedData.map(item => item.posisi);
+            const sortedBulan = sortedData.map(item => item.bulan);
+
+            barGrafik(sortedAkun, sortedBulan);
+        })
+        .catch(error => console.error('Error fetching data', error));
+        
+});
+
+
+//akun1
+const selectAkun2 = document.getElementById('akun1');
+    
+    selectAkun2.addEventListener('change', function() {
+    const cek = this.value;
+    const posisi = document.getElementById('akunposisi1');
+    const rka = document.getElementById('akunrka1');
+    const pencapaian = document.getElementById('akunpencapaian1');
+    const jabatan = document.getElementById('jabatan').value;
+    const bulan1 = document.getElementById('bulan1').value;
+    const tahun1 = document.getElementById('tahun1').value;
+    const bulan2 = document.getElementById('bulan2').value;
+    const tahun2 = document.getElementById('tahun2').value;
+
+    fetch(`/proses-report/${cek}/${jabatan}/${bulan1}/${tahun1}/${bulan2}/${tahun2}`)
+        .then(response => response.json())
+        .then(data => {
+            let akun = [];
+            let bulan = [];
+            data.forEach(item => {
+                posisi.innerText = item.posisi;
+                rka.innerText = item.rka;
+                pencapaian.innerText = item.pencapaian;
+                posisi.style.fontWeight = 'bold';
+                const date = new Date(item.tanggal_report);
+                const monthName = date.toLocaleString('id-ID', { month: 'long' });
+
+                akun.push({ posisi: item.posisi, bulan: monthName });
+                bulan.push(monthName);
+            });
+
+            const bulanUrutan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const sortedData = akun.sort((a, b) => bulanUrutan.indexOf(a.bulan) - bulanUrutan.indexOf(b.bulan));
+
+            const sortedAkun = sortedData.map(item => item.posisi);
+            const sortedBulan = sortedData.map(item => item.bulan);
+        
+            linegrafik(sortedAkun, sortedBulan);
+        })
+        .catch(error => console.error('Error fetching data', error));
+});
+
+//akun2 
+const selectAkun3 = document.getElementById('akun2');
+    
+    selectAkun3.addEventListener('change', function() {
+    const cek = this.value;
+    const posisi = document.getElementById('akunposisi2');
+    const rka = document.getElementById('akunrka2');
+    const pencapaian = document.getElementById('akunpencapaian2');
+    const jabatan = document.getElementById('jabatan').value;
+    const bulan1 = document.getElementById('bulan1').value;
+    const tahun1 = document.getElementById('tahun1').value;
+    const bulan2 = document.getElementById('bulan2').value;
+    const tahun2 = document.getElementById('tahun2').value;
+
+    fetch(`/proses-report/${cek}/${jabatan}/${bulan1}/${tahun1}/${bulan2}/${tahun2}`)
+        .then(response => response.json())
+        .then(data => {
+            let akun = [];
+            let bulan = [];
+            data.forEach(item => {
+                posisi.innerText = item.posisi;
+                rka.innerText = item.rka;
+                pencapaian.innerText = item.pencapaian;
+                posisi.style.fontWeight = 'bold';
+                const date = new Date(item.tanggal_report);
+                const monthName = date.toLocaleString('id-ID', { month: 'long' });
+
+                akun.push({ posisi: item.posisi, bulan: monthName });
+                bulan.push(monthName);
+            });
+
+            const bulanUrutan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const sortedData = akun.sort((a, b) => bulanUrutan.indexOf(a.bulan) - bulanUrutan.indexOf(b.bulan));
+            const sortedAkun = sortedData.map(item => item.posisi);
+            const sortedBulan = sortedData.map(item => item.bulan);
+            linegrafik2(sortedAkun, sortedBulan);
+        })
+        .catch(error => console.error('Error fetching data', error));
+});
+
+
+//akun3
+const selectAkun4 = document.getElementById('akun3');
+    
+    selectAkun4.addEventListener('change', function() {
+    const cek = this.value;
+    const posisi = document.getElementById('akunposisi3');
+    const rka = document.getElementById('akunrka3');
+    const pencapaian = document.getElementById('akunpencapaian3');
+    const jabatan = document.getElementById('jabatan').value;
+    const bulan1 = document.getElementById('bulan1').value;
+    const tahun1 = document.getElementById('tahun1').value;
+    const bulan2 = document.getElementById('bulan2').value;
+    const tahun2 = document.getElementById('tahun2').value;
+
+    fetch(`/proses-report/${cek}/${jabatan}/${bulan1}/${tahun1}/${bulan2}/${tahun2}`)
+        .then(response => response.json())
+        .then(data => {
+            let akun = [];
+            let bulan = [];
+            data.forEach(item => {
+                posisi.innerText = item.posisi;
+                rka.innerText = item.rka;
+                pencapaian.innerText = item.pencapaian;
+                posisi.style.fontWeight = 'bold';
+                const date = new Date(item.tanggal_report);
+                const monthName = date.toLocaleString('id-ID', { month: 'long' });
+
+                akun.push({ posisi: item.posisi, bulan: monthName });
+                bulan.push(monthName);
+            });
+
+            const bulanUrutan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const sortedData = akun.sort((a, b) => bulanUrutan.indexOf(a.bulan) - bulanUrutan.indexOf(b.bulan));
+            const sortedAkun = sortedData.map(item => item.posisi);
+            const sortedBulan = sortedData.map(item => item.bulan);
+            doughnutChart(sortedAkun, sortedBulan);
+        })
+        .catch(error => console.error('Error fetching data', error));
+});
+
+//akun4
+const selectAkun5 = document.getElementById('akun4');
+    
+    selectAkun5.addEventListener('change', function() {
+    const cek = this.value;
+    const posisi = document.getElementById('akunposisi4');
+    const rka = document.getElementById('akunrka4');
+    const pencapaian = document.getElementById('akunpencapaian4');
+    const jabatan = document.getElementById('jabatan').value;
+    const bulan1 = document.getElementById('bulan1').value;
+    const tahun1 = document.getElementById('tahun1').value;
+    const bulan2 = document.getElementById('bulan2').value;
+    const tahun2 = document.getElementById('tahun2').value;
+
+    fetch(`/proses-report/${cek}/${jabatan}/${bulan1}/${tahun1}/${bulan2}/${tahun2}`)
+        .then(response => response.json())
+        .then(data => {
+            let akun = [];
+            let bulan = [];
+            data.forEach(item => {
+                posisi.innerText = item.posisi;
+                rka.innerText = item.rka;
+                pencapaian.innerText = item.pencapaian;
+                posisi.style.fontWeight = 'bold';
+                const date = new Date(item.tanggal_report);
+                const monthName = date.toLocaleString('id-ID', { month: 'long' });
+
+                akun.push({ posisi: item.posisi, bulan: monthName });
+                bulan.push(monthName);
+            });
+
+            const bulanUrutan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const sortedData = akun.sort((a, b) => bulanUrutan.indexOf(a.bulan) - bulanUrutan.indexOf(b.bulan));
+            const sortedAkun = sortedData.map(item => item.posisi);
+            const sortedBulan = sortedData.map(item => item.bulan);
+            pie(sortedAkun, sortedBulan);
+        })
+        .catch(error => console.error('Error fetching data', error));
+});
+
+//akun5
+const selectAkun6 = document.getElementById('akun5');
+    
+    selectAkun6.addEventListener('change', function() {
+    const cek = this.value;
+    const posisi = document.getElementById('akunposisi5');
+    const rka = document.getElementById('akunrka5');
+    const pencapaian = document.getElementById('akunpencapaian5');
+    const jabatan = document.getElementById('jabatan').value;
+    const bulan1 = document.getElementById('bulan1').value;
+    const tahun1 = document.getElementById('tahun1').value;
+    const bulan2 = document.getElementById('bulan2').value;
+    const tahun2 = document.getElementById('tahun2').value;
+
+    fetch(`/proses-report/${cek}/${jabatan}/${bulan1}/${tahun1}/${bulan2}/${tahun2}`)
+        .then(response => response.json())
+        .then(data => {
+            let akun = [];
+            let bulan = [];
+            data.forEach(item => {
+                posisi.innerText = item.posisi;
+                rka.innerText = item.rka;
+                pencapaian.innerText = item.pencapaian;
+                posisi.style.fontWeight = 'bold';
+                const date = new Date(item.tanggal_report);
+                const monthName = date.toLocaleString('id-ID', { month: 'long' });
+
+                akun.push({ posisi: item.posisi, bulan: monthName });
+                bulan.push(monthName);
+            });
+
+            const bulanUrutan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const sortedData = akun.sort((a, b) => bulanUrutan.indexOf(a.bulan) - bulanUrutan.indexOf(b.bulan));
+            const sortedAkun = sortedData.map(item => item.posisi);
+            const sortedBulan = sortedData.map(item => item.bulan);
+            radar(sortedAkun, sortedBulan);
+        })
+        .catch(error => console.error('Error fetching data', error));
+});
+
+
+let barChart;
+
+function barGrafik(akun, bulan) {
+    const barChartCtx = document.getElementById('barChart').getContext('2d');
+
+    if (barChart) {
+        barChart.destroy();
+    }
+
+    barChart = new Chart(barChartCtx, {
+        type: 'bar',
+        data: {
+            labels: bulan,
+            datasets: [{
+                label: 'Posisi',
+                data: akun,
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)', 
+                    'rgba(255, 99, 132, 0.2)', 
+                    'rgba(54, 162, 235, 0.2)', 
+                    'rgba(255, 206, 86, 0.2)', 
+                    'rgba(75, 192, 192, 0.2)', 
+                    'rgba(153, 102, 255, 0.2)', 
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)', 
+                    'rgba(255, 99, 132, 1)', 
+                    'rgba(54, 162, 235, 1)', 
+                    'rgba(255, 206, 86, 1)', 
+                    'rgba(75, 192, 192, 1)', 
+                    'rgba(153, 102, 255, 1)', 
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Bulan'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Values'
+                    }
+                }
+            }
+        }
+    });
+    }
+
+let linegrafikInstance;
+
+function linegrafik(akun, bulan) {
+    const ctx = document.getElementById('lineChart').getContext('2d');
+
+    if (linegrafikInstance) {
+        linegrafikInstance.destroy();
+    }
+
+    linegrafikInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: bulan,
+            datasets: [{
+                label: 'Posisi',
+                data: akun,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false,
+                tension: 0.4,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointBackgroundColor: [
+                    'rgba(255, 99, 132, 1)', 
+                    'rgba(54, 162, 235, 1)', 
+                    'rgba(255, 206, 86, 1)', 
+                    'rgba(75, 192, 192, 1)', 
+                    'rgba(153, 102, 255, 1)', 
+                    'rgba(255, 159, 64, 1)'
+                ],
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: [
+                    'rgba(255, 99, 132, 1)', 
+                    'rgba(54, 162, 235, 1)', 
+                    'rgba(255, 206, 86, 1)', 
+                    'rgba(75, 192, 192, 1)', 
+                    'rgba(153, 102, 255, 1)', 
+                    'rgba(255, 159, 64, 1)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Bulan',
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Values',
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#666',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 12
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw;
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+}
+
+
+
+let linegrafikInstance2;
+
+function linegrafik2(akun, bulan) {
+    const ctx = document.getElementById('lineChart2').getContext('2d');
+
+    if (linegrafikInstance2) {
+        linegrafikInstance2.destroy();
+    }
+
+    linegrafikInstance2 = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: bulan,
+            datasets: [{
+                label: 'Posisi',
+                data: akun,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                borderDash: [10, 5], 
+                fill: false,
+                tension: 0.4,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointBackgroundColor: [
+                    'rgba(255, 99, 132, 1)', 
+                    'rgba(54, 162, 235, 1)', 
+                    'rgba(255, 206, 86, 1)', 
+                    'rgba(75, 192, 192, 1)', 
+                    'rgba(153, 102, 255, 1)', 
+                    'rgba(255, 159, 64, 1)'
+                ],
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: [
+                    'rgba(255, 99, 132, 1)', 
+                    'rgba(54, 162, 235, 1)', 
+                    'rgba(255, 206, 86, 1)', 
+                    'rgba(75, 192, 192, 1)', 
+                    'rgba(153, 102, 255, 1)', 
+                    'rgba(255, 159, 64, 1)'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Bulan',
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Values',
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#666',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 12
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw;
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+}
+
+let doughnutChartInstance;
+
+function doughnutChart(akun, bulan) {
+    const ctx = document.getElementById('doughnutChart').getContext('2d');
+
+    if (doughnutChartInstance) {
+        doughnutChartInstance.destroy();
+    }
+
+    doughnutChartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: bulan,
+            datasets: [{
+                label: 'Posisi',
+                data: akun,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)', 
+                    'rgba(54, 162, 235, 0.6)', 
+                    'rgba(255, 206, 86, 0.6)', 
+                    'rgba(75, 192, 192, 0.6)', 
+                    'rgba(153, 102, 255, 0.6)', 
+                    'rgba(255, 159, 64, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)', 
+                    'rgba(54, 162, 235, 1)', 
+                    'rgba(255, 206, 86, 1)', 
+                    'rgba(75, 192, 192, 1)', 
+                    'rgba(153, 102, 255, 1)', 
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#666',
+                        font: {
+                            size: 16
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 16
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.raw;
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+}
+
+
+let pieChart;
+
+function pie(akun, bulan) {
+    const ctx = document.getElementById('pieChart').getContext('2d');
+
+    if (pieChart) {
+        pieChart.destroy();
+    }
+
+    pieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: bulan,
+            datasets: [{
+                label: 'Posisi',
+                data: akun,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)', 
+                    'rgba(54, 162, 235, 0.6)', 
+                    'rgba(255, 206, 86, 0.6)', 
+                    'rgba(75, 192, 192, 0.6)', 
+                    'rgba(153, 102, 255, 0.6)', 
+                    'rgba(255, 159, 64, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)', 
+                    'rgba(54, 162, 235, 1)', 
+                    'rgba(255, 206, 86, 1)', 
+                    'rgba(75, 192, 192, 1)', 
+                    'rgba(153, 102, 255, 1)', 
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#666',
+                        font: {
+                            size: 16
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 16
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.raw;
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+}
+
+
+let radarChart;
+
+function radar(akun, bulan) {
+    const ctx = document.getElementById('radarChart').getContext('2d');
+
+    if (radarChart) {
+        radarChart.destroy();
+    }
+
+    radarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: bulan,
+            datasets: [{
+                label: 'Posisi',
+                data: akun,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: {
+                        display: true,
+                        color: 'rgba(204, 204, 204, 0.5)'
+                    },
+                    grid: {
+                        color: 'rgba(204, 204, 204, 0.5)'
+                    },
+                    pointLabels: {
+                        font: {
+                            size: 14
+                        },
+                        color: '#666'
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: '#333',
+                        font: {
+                            size: 16
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 16
+                    },
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}`;
+                        }
+                    }
+                }
+            },
+            animation: {
+                duration: 1500,
+                easing: 'easeInOutBounce'
+            }
+        }
+    });
+}
+
+
+});
+    
+
+  
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<style>
+.position-relative {
+  margin: 10px;
+}
+#idKedua {
+  margin-right: 14px;
+}
+#balutan {
+  border: solid 1px grey;
+  padding: 10px;
+  border-radius: 10px;
+}
+</style>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Data Laporan</h1>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="./">Home</a></li>
+      <li class="breadcrumb-item">Pengaturan</li>
+      <li class="breadcrumb-item active" aria-current="page">Data Laporan</li>
+    </ol>
+</div>
+      
+<div class="card mb-4">
+
+<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Report Comparison</h6>
+          <div class="position-relative">
+            <div class="d-grid top-0 end-0">
+                <button class="btn btn-primary" type="button" onclick="filterLaporan()">+ Cari Data Laporan</button>
+            </div>
+        </div>
+          
+          
+</div>
+
+<div class="table-responsive p-3">
+  <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+    <thead class="thead-light">
+        <th>No</th>
+        <th>Tanggal Report</th>
+        <th>Kategori</th>
+        <th>Keterangan</th>
+        <th>Posisi</th>
+        <th>RKA</th>
+        <th>Pencapaian</th>
+    </thead>
+    <tbody>
+        <% results.forEach((item, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= item.tanggal_report %></td>
+              <td><%= item.kategori %></td>
+              <td><%= item.keterangan %></td>
+              <td><%= item.posisi %></td>
+              <td><%= item.rka %></td>
+              <td><%= item.pencapaian %></td>
+            </tr>
+          <% }); %>
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,46 @@
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Data Unit</h1>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="./">Home</a></li>
+      <li class="breadcrumb-item">Pengaturan</li>
+      <li class="breadcrumb-item active" aria-current="page">Data Unit</li>
+    </ol>
+</div>
+      
+<div class="card mb-4">
+
+<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Daftar Unit</h6>
+          <div class="position-relative">
+            <div class="d-grid top-0 end-0">
+                <button class="btn btn-primary" type="button" onclick="addUnit()">+ Tambah Unit</button>
+            </div>
+        </div>
+</div>
+
+<div class="table-responsive p-3">
+          <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+            <thead class="thead-light">
+                <th>No</th>
+                <th>Nama Unit</th>
+                <th>Kode Unit</th>
+                <th>Aksi</th>
+            </thead>
+            <tbody>
+                <% results.forEach((item, index) => { %>
+                    <tr>
+                      <td><%= index + 1 %></td>
+                      <td><%= item.unit %></td>
+                      <td><%= item.kode_unit %></td>
+                      <td>
+                        <button onclick="deleteUnit('<%= item.id %>')" class="btn btn-danger">Delete</button>
+                      </td>
+                    </tr>
+                  <% }); %>
+                
+            </tbody>
+          </table>
+
+</div>
+  

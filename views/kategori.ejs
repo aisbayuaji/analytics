@@ -1,0 +1,52 @@
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Kategori Akun</h1>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="./">Home</a></li>
+      <li class="breadcrumb-item">Pengaturan</li>
+      <li class="breadcrumb-item active" aria-current="page">Kategori Akun</li>
+    </ol>
+</div>
+      
+<div class="card mb-4">
+
+<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Daftar Kategori</h6>
+          <div class="position-relative">
+            <div class="d-grid top-0 end-0">
+                <button class="btn btn-primary" type="button" onclick="addakunkategori()">Upload Data Akun</button>
+            </div>
+        </div>
+</div>
+
+<div class="table-responsive p-3">
+          <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+            <thead class="thead-light">
+                <th>No</th>
+                <th>Nama Kategori</th>
+                <th>PN</th>
+                <th>Nama Pekerja</th>
+                <th>Kode Uker</th>
+                <th>Nama Uker</th>
+                <th>Aksi</th>
+            </thead>
+            <tbody>
+                <% results.forEach((item, index) => { %>
+                    <tr>
+                      <td><%= index + 1 %></td>
+                      <td><%= item.nama_kategori %></td>
+                      <td><%= item.pn %></td>
+                      <td><%= item.nama_pekerja %></td>
+                      <td><%= item.kode_uker %></td>
+                      <td><%= item.nama_uker %></td>
+                      <td>
+                        <button onclick="editKategori('<%= item.id %>', '<%= item.nama_kategori %>', '<%= item.pn %>', '<%= item.nama_pekerja %>', '<%= item.kode_uker %>', '<%= item.nama_uker %>')" class="btn btn-primary">Edit</button>
+                        <button onclick="deleteKategori('<%= item.id %>')" class="btn btn-danger">Delete</button>
+                      </td>
+                    </tr>
+                  <% }); %>
+            </tbody>
+          </table>
+
+</div>
+  
